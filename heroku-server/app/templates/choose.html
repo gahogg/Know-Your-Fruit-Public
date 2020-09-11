@@ -1,0 +1,14 @@
+<!doctype html>
+<center>
+  <h2>Click on your fruit:</h2>
+  <br>
+  <table>
+  {% for fruit_name in fruit_names %}
+    <tr>
+      <td><button onclick="window.location.href='/fruits/{{ fruit_name }}';" > {{ fruit_name }} </button></td>
+    </tr>
+  {% endfor %}
+  </table>
+  <br>
+  <button onclick="window.location.href='/'" >None of the above </button>
+</center>

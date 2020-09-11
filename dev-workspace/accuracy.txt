@@ -1,0 +1,79 @@
+ACCURACY
+
+Top 7:
+
+Total                 97.6%
+-----              --------
+Apple                100.0%
+Avocado               93.8%
+Avocado-cut          100.0%
+Banana               100.0%
+Bell Pepper          100.0%
+Blackberries         100.0%
+Blueberries          100.0%
+Cherries              88.9%
+Coconut               75.0%
+Cucumber             100.0%
+Cucumber-cut         100.0%
+Grapes               100.0%
+Kiwi                  93.3%
+Kiwi-cut             100.0%
+Lemon                100.0%
+Lime                  93.8%
+Lychee                81.8%
+Mango                100.0%
+Melon                100.0%
+Orange               100.0%
+Orange-cut           100.0%
+Papaya               100.0%
+Papaya-cut           100.0%
+Peach                 73.3%
+Pear                 100.0%
+Pineapple            100.0%
+Plum                  66.7%
+Pomegranate          100.0%
+Pomegranate-cut      100.0%
+Raspberries          100.0%
+Strawberries         100.0%
+Tomato               100.0%
+Watermelon           100.0%
+Watermelon-cut       100.0%
+
+Top 1:
+
+Total                 76.8%
+-----              --------
+Apple                 41.9%
+Avocado               71.9%
+Avocado-cut           93.5%
+Banana               100.0%
+Bell Pepper           93.1%
+Blackberries         100.0%
+Blueberries           94.4%
+Cherries              48.1%
+Coconut               50.0%
+Cucumber              96.0%
+Cucumber-cut         100.0%
+Grapes                95.0%
+Kiwi                   0.0%
+Kiwi-cut              93.3%
+Lemon                 83.3%
+Lime                  50.0%
+Lychee                36.4%
+Mango                 67.7%
+Melon                 96.2%
+Orange                72.0%
+Orange-cut            86.2%
+Papaya                54.5%
+Papaya-cut           100.0%
+Peach                 53.3%
+Pear                  73.5%
+Pineapple            100.0%
+Plum                  16.7%
+Pomegranate           35.3%
+Pomegranate-cut      100.0%
+Raspberries          100.0%
+Strawberries          79.3%
+Tomato               100.0%
+Watermelon           100.0%
+Watermelon-cut        66.7%
