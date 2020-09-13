@@ -1,5 +1,5 @@
 # Imports
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template, jsonify, Markup
 from numpy import uint8, array, argsort, fliplr, asarray
 from cv2 import imdecode, cvtColor, COLOR_BGR2RGB, IMREAD_COLOR
 from io import BytesIO
@@ -7,6 +7,7 @@ from PIL import Image
 from os import environ, path
 from googleapiclient import discovery
 from json import load as load_json
+from re import sub
 
 
 # CONSTANTS
@@ -15,7 +16,7 @@ from json import load as load_json
 AUTH_FILE_PATH = path.join('app', 'auth.json')
 PROJECT_ID = 'know-your-fruit-283323'
 MODEL_NAME = 'prod'
-VERSION_NUM = 'v6'
+VERSION_NUM = 'v7'
 
 # CLASS_NAMES MUST MATCH ORDER USED IN MODEL 
 CLASS_NAMES = ['Apple', 'Avocado', 'Avocado-cut', 'Banana', 'Bell Peppers', 'Blackberries', 'Blueberries', 'Cherries (Sweet)',
@@ -38,7 +39,7 @@ def upload_file():
     if request.method == 'POST':
         img_bytes = request.files['file']
         prediction_names = _get_prediction_names(img_bytes)
-        return render_template('choose.html', fruit_names=prediction_names)
+        return render_template('choose.html', fruit_names=list(map(_get_noncut_fruit_name, prediction_names)))
     else:
         return render_template('upload.html')
 
@@ -51,8 +52,11 @@ def get_fruit_data(fruit_name):
     fruit_name = _get_noncut_fruit_name(fruit_name)
 
     fruit_data = _get_fruit_data(fruit_name)
+    
+    # Make it HTML safe
+    fruit_data = Markup(fruit_data)
 
-    return render_template('data.html', info=fruit_data)
+    return render_template('data.html', name=fruit_name, pic_path='/static/'+fruit_name+'.jpg', info=fruit_data)
 
 
 def _get_prediction_names(img_bytes):
@@ -92,8 +96,19 @@ def _get_fruit_data(fruit_name):
     fruit_dict = None
     with open(path.join('app', 'dict_fruit.txt'), 'r', encoding='utf8') as fruit_file:
         fruit_dict = load_json(fruit_file)
+    
+    data = fruit_dict[fruit_name]
+    
+    # Removing some of the unnecessary info 
+    data = data.split('SERVE')[0]
 
-    return fruit_dict[fruit_name]
+    lowercase_heading_lst = ['Varieties to Explore', 'Nutrient Content Claims', 'Health Claims', 
+    'STORE', 'SELECT', 'Storage', 'Selection' 'Nutrition Benefits']
+    for heading in lowercase_heading_lst:
+        data = data.replace(heading, '<h3>'+heading.upper()+'</h3>')
+        data = data.replace('<h3>'+heading.upper()+'</h3><br>', '<h3>'+heading.upper()+'</h3>')
+        data = data.replace('<h3>'+heading.upper()+'</h3> <br>', '<h3>'+heading.upper()+'</h3>')
+    return data
 
 
 def _get_noncut_fruit_name(fruit_name):

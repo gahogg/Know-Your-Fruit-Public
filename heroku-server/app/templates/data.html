@@ -2,14 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{ name }}</title>
 </head>
 <body>
-  <center>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <center>
+      <img src= "{{pic_path}}" height="225"/>
+      <br>
+      <h1>{{name}}</h1>
+      <HR WIDTH="100%" SIZE="5" COLOR="#FF0000">
+      </center>
       {{ info }}
       <br><br>
-      <button onclick="window.location.href='/'" >Home</button>
-  </center>
+      <center><button onclick="window.location.href='/'">Home</button></center>
   <br>
 </body>
 </html>

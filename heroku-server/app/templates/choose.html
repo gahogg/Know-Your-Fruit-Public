@@ -1,14 +1,20 @@
 <!doctype html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <center>
-  <h2>Click on your fruit:</h2>
-  <br>
+  <h1>Click on your fruit:</h1>
+  <HR WIDTH="100%" SIZE="5" COLOR="#FF0000">
   <table>
   {% for fruit_name in fruit_names %}
     <tr>
-      <td><button onclick="window.location.href='/fruits/{{ fruit_name }}';" > {{ fruit_name }} </button></td>
+      <td>
+        <center>
+          <h2>{{fruit_name}}</h2>
+          <button onclick="window.location.href='/fruits/{{ fruit_name }}';"> <img src="/static/{{fruit_name}}.jpg" width=150> </button>
+      </center>
+      </td>
     </tr>
   {% endfor %}
   </table>
   <br>
-  <button onclick="window.location.href='/'" >None of the above </button>
+  <button onclick="window.location.href='/'" >None of the above</button>
 </center>
